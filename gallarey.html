@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-image:url("C:/Users/SNIPER-PHOTOGRAPHY/DESKTOP/HTML/lo.jpg")
+    }
+    /* Lightbox CSS */
+    .lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        padding-top: 60px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        text-align: center;
+    }
+
+    .lightbox-content {
+        max-width: 80%;
+        max-height: 80%;
+        margin: auto;
+    }
+
+    #close-lightbox {
+        position: absolute;
+        top: 20px;
+        right: 35px;
+        color: white;
+        font-size: 40px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    #close-lightbox:hover {
+        color: red;
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="gallery">
+        <h2>Our Image Gallery</h2>
+        <div id="gallery-container" class="gallery"></div> <!-- Dynamic content will go here -->
+    </section>
+
+    <!-- Lightbox modal -->
+    <div id="lightbox" class="lightbox">
+        <span id="close-lightbox">&times;</span>
+        <img id="lightbox-image" class="lightbox-content" alt="Lightbox Image">
+        <div id="caption"></div>
+    </div>
+
+    <script>
+    // Array of image objects
+    const images = [
+        { src: 'HTML/image1.jpg', alt: 'Image 1' },
+        { src: 'images/image2.jpg', alt: 'Image 2' },
+        { src: 'images/image3.jpg', alt: 'Image 3' },
+        // Add more images here
+    ];
+
+    // Function to generate the gallery
+    function loadGallery() {
+        const galleryContainer = document.getElementById('gallery-container');
+
+        images.forEach(image => {
+            // Create img element
+            const imgElement = document.createElement('image 1');
+            imgElement.src = image 1.src;
+            imgElement.alt = image 1.alt;
+
+            // Add hover effect (optional)
+            imgElement.addEventListener('mouseover', () => {
+                imgElement.style.transform = 'scale(1.05)';
+            });
+            imgElement.addEventListener('mouseout', () => {
+                imgElement.style.transform = 'scale(1)';
+            });
+
+            // Add click event to open lightbox
+            imgElement.addEventListener('click', () => openLightbox(image));
+
+            // Append the image to the gallery container
+            galleryContainer.appendChild(imgElement);
+        });
+    }
+
+    function openLightbox(image) {
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-image');
+        const caption = document.getElementById('caption');
+
+        // Show lightbox
+        lightbox.style.display = 'block';
+
+        // Set lightbox image and caption
+        lightboxImg.src = image.src;
+        caption.textContent = image.alt;
+    }
+
+    function closeLightbox() {
+        const lightbox = document.getElementById('lightbox');
+        lightbox.style.display = 'grid';
+    }
+
+    window.onload = loadGallery;
+
+    // Close lightbox when close button is clicked
+    document.getElementById('close-lightbox').onclick = closeLightbox;
+    </script>
+</body>
+</html>
